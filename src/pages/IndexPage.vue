@@ -1,44 +1,27 @@
 <template>
-  <q-page class="row items-center justify-evenly">
-    <example-component title="Example component" active :todos="todos" :meta="meta"></example-component>
+  <q-page class="justify-center items-center">
+    <div class="text-h3 text-center text-bold q-mt-md text-primary">
+      CutUrl.go
+    </div>
+    <div
+      class="text-subtitle2 text-center text-bold q-px-md q-mt-md text-secondary"
+    >
+      Com o nosso serviço de encurtamento de URL, você pode reduzir URLs longas
+      em links curtos e gerenciáveis ​​de forma rápida e fácil.
+    </div>
+
+    <URLInput :url="url" @update-url="updateUrl" />
   </q-page>
 </template>
 
-<script lang="ts">
-import { Todo, Meta } from 'components/models';
-import ExampleComponent from 'components/ExampleComponent.vue';
-import { defineComponent, ref } from 'vue';
+<script setup lang="ts">
+import { ref } from 'vue';
 
-export default defineComponent({
-  name: 'IndexPage',
-  components: { ExampleComponent },
-  setup() {
-    const todos = ref<Todo[]>([
-      {
-        id: 1,
-        content: 'ct1'
-      },
-      {
-        id: 2,
-        content: 'ct2'
-      },
-      {
-        id: 3,
-        content: 'ct3'
-      },
-      {
-        id: 4,
-        content: 'ct4'
-      },
-      {
-        id: 5,
-        content: 'ct5'
-      }
-    ]);
-    const meta = ref<Meta>({
-      totalCount: 1200
-    });
-    return { todos, meta };
-  }
-});
+import URLInput from 'src/components/URLInput.vue';
+
+const url = ref('');
+
+const updateUrl = (newUrl: string) => {
+  url.value = newUrl;
+};
 </script>
